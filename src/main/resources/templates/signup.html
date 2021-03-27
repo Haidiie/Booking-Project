@@ -33,7 +33,6 @@
                 th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid' : ''}"
                 th:value="${user.firstName}"
                 id="inputFirstName"
-                placeholder="1234 Main St"
               />
               <div
                 th:each="error :${#fields.errors('firstName')}"
@@ -68,6 +67,7 @@
                 th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}"
                 class="form-control"
                 id="email"
+                placeholder="exempel@gmail.com"
               />
               <div
                 th:each="error :${#fields.errors('email')}"

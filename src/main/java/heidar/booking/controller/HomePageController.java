@@ -52,7 +52,7 @@ public class HomePageController {
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin/admin_products";
+            return "redirect:/admin/room";
         }
         return "redirect:/user/room";
     }
