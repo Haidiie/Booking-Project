@@ -1,6 +1,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Sign In</title>
+    <title>Main Page</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -14,9 +14,13 @@
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
-
+    <link rel="stylesheet" th:href="@{../css/homepage.css}">
   </head>
   <body>
-    <h1>Welcome User!</h1>
+  <div class="page-btn">
+    <a class="page-btns">Reservations</a>
+    <a class="page-btns" th:href="@{/user/booking-rooms}">    Booking Rooms   </a>
+    <a class="page-btns" th:href="@{/logout}">  Logout  </a>
+  </div>
   </body>
 </html>

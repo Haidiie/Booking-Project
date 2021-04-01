@@ -54,6 +54,6 @@ public class HomePageController {
         if (request.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/admin/room";
         }
-        return "redirect:/user/room";
+        return "redirect:/user/main";
     }
 }

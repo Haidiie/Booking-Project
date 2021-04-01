@@ -1,8 +1,12 @@
 package heidar.booking.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 public class Room implements Serializable {
@@ -10,24 +14,64 @@ public class Room implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
     private Long id;
-    private String name;
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private int stayPeriod;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private String room;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     private int price;
-    private String type;
-    private LocalDate arrivalDate;
-    private int stayDays;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private int rooms;
 
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private int persons;
 
+    @NotNull(message = "is required")
+    @Size(message = "is required")
+    private int children;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private String openBuffet;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date arrivalDate;
+
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
+    private int usertId;
 
     public Room() {
     }
 
-    public Room(String name, int price, String type, LocalDate arrivalDate, int stayDays) {
-        this.name = name;
+    public Room(@NotNull(message = "is required") @Size(min = 1, message = "is required") int stayPeriod,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") String room,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") int price,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") int rooms,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") int persons,
+                @NotNull(message = "is required") @Size(message = "is required") int children,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") String openBuffet,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") Date arrivalDate,
+                @NotNull(message = "is required") @Size(min = 1, message = "is required") int usertId) {
+        this.stayPeriod = stayPeriod;
+        this.room = room;
         this.price = price;
-        this.type = type;
+        this.rooms = rooms;
+        this.persons = persons;
+        this.children = children;
+        this.openBuffet = openBuffet;
         this.arrivalDate = arrivalDate;
-        this.stayDays = stayDays;
+        this.usertId = usertId;
     }
 
     public Long getId() {
@@ -38,12 +82,20 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getStayPeriod() {
+        return stayPeriod;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStayPeriod(int stayPeriod) {
+        this.stayPeriod = stayPeriod;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 
     public int getPrice() {
@@ -54,27 +106,51 @@ public class Room implements Serializable {
         this.price = price;
     }
 
-    public String getType() {
-        return type;
+    public int getRooms() {
+        return rooms;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
     }
 
-    public LocalDate getArrivalDate() {
+    public int getPersons() {
+        return persons;
+    }
+
+    public void setPersons(int persons) {
+        this.persons = persons;
+    }
+
+    public int getChildren() {
+        return children;
+    }
+
+    public void setChildren(int children) {
+        this.children = children;
+    }
+
+    public String getOpenBuffet() {
+        return openBuffet;
+    }
+
+    public void setOpenBuffet(String openBuffet) {
+        this.openBuffet = openBuffet;
+    }
+
+    public Date getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDate arrivalDate) {
+    public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public int getStayDays() {
-        return stayDays;
+    public int getUsertId() {
+        return usertId;
     }
 
-    public void setStayDays(int stayDays) {
-        this.stayDays = stayDays;
+    public void setUsertId(int usertId) {
+        this.usertId = usertId;
     }
 }
