@@ -38,7 +38,7 @@ public class HomePageController {
 
     @PostMapping("/process")
     public String ShowSuccessPage(@Valid @ModelAttribute("user") User user, BindingResult result) {
-        user.setRole("ROLE_USER");
+        user.setRole("ROLE_ADMIN");
         user.setPassword(userService.enCryptedPassword(user));
         if (result.hasErrors()) {
             System.out.println(result.toString());
@@ -52,8 +52,8 @@ public class HomePageController {
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin/room";
+            return "redirect:/admin/main";
         }
-        return "redirect:/user/room";
+        return "redirect:/user/main";
     }
 }
