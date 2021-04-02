@@ -3,7 +3,6 @@ package heidar.booking.service;
 import heidar.booking.model.Reservation;
 import heidar.booking.model.User;
 import heidar.booking.repo.ReservationRepo;
-import heidar.booking.repo.RoomRepo;
 import heidar.booking.repo.UserRepo;
 import heidar.booking.temp.CurrentReservation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ import java.util.Collection;
 public class UserService {
     @Autowired
     private UserRepo userRepo;
-
-    @Autowired
-    private RoomRepo roomRepo;
 
     @Autowired
     private ReservationRepo reservationRepo;
@@ -60,6 +56,10 @@ public class UserService {
     public void saveOrUpdateReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
         reservation.setUserId(getLoggedUserId());
+
+        //är min egna
+        reservation.setUserEmail(getLoggedUserEmail());
+
         reservation.setArrivalDate(currentReservation.getArrivalDate());
         reservation.setOpenBuffet(currentReservation.getOpenBuffet());
         reservation.setStayDays(currentReservation.getStayPeriod());
@@ -101,6 +101,12 @@ public class UserService {
     public int getLoggedUserId() {
         User user = userRepo.findByEmail(loggedUserEmail());
         return user.getId();
+    }
+
+    // är min egna
+    public String getLoggedUserEmail() {
+        User user = userRepo.findByEmail(loggedUserEmail());
+        return user.getEmail();
     }
 
     private String loggedUserEmail() {

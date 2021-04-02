@@ -68,7 +68,7 @@
 						<!-- Update and Delete buttons -->
 						<div class="rows">
 							<div class="col-small">
-								<form th:action="@{/reservation-update}" method="POST">
+								<form th:action="@{/user/reservation-update}" method="POST">
 									<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 								
 									<input type="hidden" name="resId" th:value="${tempRes.id}" />

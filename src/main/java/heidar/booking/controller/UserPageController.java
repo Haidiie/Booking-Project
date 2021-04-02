@@ -18,7 +18,7 @@ public class UserPageController {
     UserService userService;
 
     @GetMapping("/main")
-    public String showProductPage(Model model, String name) {
+    public String showProductPage(Model model) {
 
         return "/user/user-main";
     }
@@ -38,7 +38,7 @@ public class UserPageController {
         // send reservation to services to save it in database
         userService.saveOrUpdateReservation(currentReservation);
         System.out.println(theBindingResult.toString());
-        return "redirect:/user/booking-rooms";
+        return "redirect:/user/your-reservations";
     }
 
     @GetMapping("/your-reservations")
@@ -65,7 +65,7 @@ public class UserPageController {
         // new update reservation sent to services to store it in database
         model.addAttribute("newRes", userService.reservationToCurrentReservationById(resId));
 
-        return "reservation-page";
+        return "/user/booking-rooms";
     }
 
 }

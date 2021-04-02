@@ -28,6 +28,8 @@ public class Reservation implements Serializable {
 
     private int userId;
 
+    private String userEmail;
+
 
 
 
@@ -125,5 +127,13 @@ public class Reservation implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }
