@@ -5,14 +5,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,updatable = false)
-    private int id;
+    private Integer id;
 
     @Column(unique = true)
     @Email(regexp = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)", message = "Please enter a valid email address")
@@ -32,23 +31,11 @@ public class User implements Serializable {
 
 
 
-
-    public User() {
-    }
-
-    public User(@Email(regexp = "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)", message = "Please enter a valid email address") String email, @NotBlank(message = "You need to enter a password!") @Size(min = 6, message = "Minimum 6 characters") String password, @NotBlank(message = "You need to enter your first name") String firstName, @NotBlank(message = "You need to enter your last name") String lastName, String role) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.role = role;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

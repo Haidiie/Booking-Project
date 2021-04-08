@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Reference Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>All Reservations</title>
+</head>
+
+<body>
+
+    <form ui-jp="parsley" th:action="@{/admin/reservations}" th:object="${resList}" method="get">
+        <div style="margin-left: 800px; margin-top: 20px; margin-bottom: 2px;" class="form-group">
+            <label for="name"></label>
+            <input type="text" name="name" placeholder="Search Email here">
+        </div>
+        <button style="margin-left: 802px; width: 185px;" type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Reservations Table Section -->
+    <section class="container">
+        <h2>All Reservations</h2>
+        <h2>Reservation List</h2>
+
+        <table class="table table-bordered table-responsive-lg"
+            data-toggle="table"
+            data-pagination="true"
+            data-search="true">
+
+            <!-- thead Table elements -->
+            <thead class="thead-dark">
+                <tr>
+                    <th>Res ID</th>
+                    <th>Room</th>
+                    <th>Rooms</th>
+                    <th>Persons</th>
+                    <th>Children</th>
+                    <th>Dinner</th>
+                    <th>Stay Days</th>
+                    <th>Arrival Date</th>
+                    <th>Total Price</th>
+                    <th>User Email</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+
+            <!-- loop in each reservation -->
+            <tbody>
+                <tr th:each=" tempRes : ${resList}">
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.id}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.roomType}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.rooms}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.persons}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.children}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.dinner}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.stayDays}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.arrivalDate}"
+                        id="arr_str" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.price}" />
+                    <td style="text-align: center; vertical-align: middle;" th:text="${tempRes.userEmail}" />
+                    <td>
+                        <!-- Update and Delete -->
+                        <div class="rows">
+                            <div class="col-small">
+                                <form th:action="@{/admin/reservation-update}" method="POST">
+                                    <input type="hidden" name="resId" th:value="${tempRes.id}" />
+                                    <button type="submit" class="btn btn-info btn-lg">Update</button>
+                                </form>
+                            </div>
+                            <div class="col-small">
+                                <form th:action="@{/admin/reservation-delete}" method="POST">
+                                    <input type="hidden" name="resId" th:value="${tempRes.id}" />
+                                    <button type="submit" class="btn btn-danger btn-lg"
+                                        onclick="if (!(confirm('Are you sure you want to delete this Reservation?'))) return false">
+                                        Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+
+</html>

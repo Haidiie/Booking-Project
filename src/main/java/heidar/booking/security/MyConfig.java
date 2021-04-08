@@ -16,13 +16,11 @@ public class MyConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService ServiceClass() {
-
         return new CustomService();
     }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-
         return new BCryptPasswordEncoder();
     }
 

@@ -17,8 +17,12 @@ import javax.validation.Valid;
 @Controller
 public class HomePageController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public HomePageController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/")
     public String showHomePage(){
