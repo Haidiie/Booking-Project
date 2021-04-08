@@ -11,21 +11,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Collection;
 
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepo userRepo;
+
+    private final UserRepo userRepo;
+    private final ReservationRepo reservationRepo;
+    private final BCryptPasswordEncoder encrypt;
 
     @Autowired
-    private ReservationRepo reservationRepo;
-
-    @Autowired
-    private BCryptPasswordEncoder encrypt;
-
+    public UserService(UserRepo userRepo, ReservationRepo reservationRepo, BCryptPasswordEncoder encrypt) {
+        this.userRepo = userRepo;
+        this.reservationRepo = reservationRepo;
+        this.encrypt = encrypt;
+    }
 
     public String enCryptedPassword(User user) {
         return encrypt.encode(user.getPassword());
@@ -36,65 +37,47 @@ public class UserService {
         userRepo.save(user);
     }
 
-
-    public User findByEmail(String email) {
-        return userRepo.findByEmail(email);
-    }
-
-    @Transactional
     public Collection<Reservation> getReservationsForLoggedUser() {
         return reservationRepo.findAllByUserId((getLoggedUserId()));
     }
 
-    @Transactional
     public void deleteReservation(int resId) {
-
         reservationRepo.deleteById(resId);
     }
 
-    @Transactional
     public void saveOrUpdateReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
         reservation.setUserId(getLoggedUserId());
-
-        //är min egna
         reservation.setUserEmail(getLoggedUserEmail());
-
         reservation.setArrivalDate(currentReservation.getArrivalDate());
-        reservation.setOpenBuffet(currentReservation.getOpenBuffet());
-        reservation.setStayDays(currentReservation.getStayPeriod());
+        reservation.setDinner(currentReservation.getDinner());
+        reservation.setStayDays(currentReservation.getStayDays());
         reservation.setChildren(currentReservation.getChildren());
         reservation.setPersons(currentReservation.getPersons());
         reservation.setPrice(currentReservation.getPrice());
         reservation.setRooms(currentReservation.getRooms());
-        reservation.setRoom(currentReservation.getRoom());
+        reservation.setRoomType(currentReservation.getRoomType());
         reservation.setId(currentReservation.getId());
-
         reservationRepo.save(reservation);
-
     }
 
     public CurrentReservation reservationToCurrentReservationById(int resId) {
         Reservation reservation = getReservationForLoggedUserById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
-
         currentReservation.setArrivalDate(reservation.getArrivalDate());
-        currentReservation.setOpenBuffet(reservation.getOpenBuffet());
-        currentReservation.setStayPeriod(reservation.getStayDays());
+        currentReservation.setDinner(reservation.getDinner());
+        currentReservation.setStayDays(reservation.getStayDays());
         currentReservation.setChildren(reservation.getChildren());
         currentReservation.setPersons(reservation.getPersons());
         currentReservation.setUsertId(reservation.getUserId());
         currentReservation.setRooms(reservation.getRooms());
         currentReservation.setPrice(reservation.getPrice());
-        currentReservation.setRoom(reservation.getRoom());
+        currentReservation.setRoomType(reservation.getRoomType());
         currentReservation.setId(reservation.getId());
-
         return currentReservation;
     }
 
-    @Transactional
     public Reservation getReservationForLoggedUserById(int resId) {
-
         return reservationRepo.findById(resId);
     }
 
@@ -103,19 +86,16 @@ public class UserService {
         return user.getId();
     }
 
-    // är min egna
     public String getLoggedUserEmail() {
         User user = userRepo.findByEmail(loggedUserEmail());
         return user.getEmail();
     }
 
     private String loggedUserEmail() {
-
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             return ((UserDetails) principal).getUsername();
         }
-
         return principal.toString();
     }
 

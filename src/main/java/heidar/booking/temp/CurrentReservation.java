@@ -2,173 +2,114 @@ package heidar.booking.temp;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class CurrentReservation {
 
-    // temp class to filter data and get it from controller to database using services
-    //  current reservation fields and annotate to get the required data
+    private Integer id;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int id;
+    private Integer stayDays;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int stayPeriod;
+    private String roomType;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private String room;
+    private Integer price;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int price;
+    private Integer rooms;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int rooms;
+    private Integer persons;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int persons;
+    private Integer children;
 
-   /* @NotNull(message = "is required")
-    @Size(message = "is required")*/
-    private int children;
+    private String dinner;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private String openBuffet;
-
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date arrivalDate;
+    private LocalDate arrivalDate;
 
-    /*@NotNull(message = "is required")
-    @Size(min = 1, message = "is required")*/
-    private int usertId;
+    private Integer usertId;
 
-    // current reservation super and fields constructors
 
-    public CurrentReservation() {
-    }
 
-    public CurrentReservation(@NotNull(message = "is required") @Size(min = 1, message = "is required") int id,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int stayPeriod,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") String room,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int price,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int rooms,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int persons,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int children,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") String openBuffet,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") Date arrivalDate,
-                              @NotNull(message = "is required") @Size(min = 1, message = "is required") int usertId) {
-        super();
-        this.id = id;
-        this.stayPeriod = stayPeriod;
-        this.room = room;
-        this.price = price;
-        this.rooms = rooms;
-        this.persons = persons;
-        this.children = children;
-        this.openBuffet = openBuffet;
-        this.arrivalDate = arrivalDate;
-        this.usertId = usertId;
-    }
 
-    // current reservation getters and setters fields
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getStayPeriod() {
-        return stayPeriod;
+    public Integer getStayDays() {
+        return stayDays;
     }
 
-    public void setStayPeriod(int stayPeriod) {
-        this.stayPeriod = stayPeriod;
+    public void setStayDays(Integer stayDays) {
+        this.stayDays = stayDays;
     }
 
-    public String getRoom() {
-        return room;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getRooms() {
+    public Integer getRooms() {
         return rooms;
     }
 
-    public void setRooms(int rooms) {
+    public void setRooms(Integer rooms) {
         this.rooms = rooms;
     }
 
-    public int getPersons() {
+    public Integer getPersons() {
         return persons;
     }
 
-    public void setPersons(int persons) {
+    public void setPersons(Integer persons) {
         this.persons = persons;
     }
 
-    public int getChildren() {
+    public Integer getChildren() {
         return children;
     }
 
-    public void setChildren(int children) {
+    public void setChildren(Integer children) {
         this.children = children;
     }
 
-    public String getOpenBuffet() {
-        return openBuffet;
+    public String getDinner() {
+        return dinner;
     }
 
-    public void setOpenBuffet(String openBuffet) {
-        this.openBuffet = openBuffet;
+    public void setDinner(String dinner) {
+        this.dinner = dinner;
     }
 
-    public Date getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
+    public void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public int getUsertId() {
+    public Integer getUsertId() {
         return usertId;
     }
 
-    public void setUsertId(int usertId) {
+    public void setUsertId(Integer usertId) {
         this.usertId = usertId;
     }
 
-    // override to string method to contain all fields
-
-    @Override
-    public String toString() {
-        return "CurrentReservation [id=" + id + ", stayPeriod=" + stayPeriod + ", room=" + room + ", price=" + price
-                + ", rooms=" + rooms + ", persons=" + persons + ", children=" + children + ", openBuffet="
-                + openBuffet + ", arrivalDate=" + arrivalDate + ", usertId=" + usertId + "]";
-    }
 
 }

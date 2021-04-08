@@ -2,130 +2,114 @@ package heidar.booking.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
-    private String room;
+    private String roomType;
 
-    private int price;
+    private Integer price;
 
-    private int rooms;
+    private Integer rooms;
 
-    private int persons;
+    private Integer persons;
 
-    private int children;
+    private Integer children;
 
-    private String openBuffet;
+    private String dinner;
 
-    private Date arrivalDate;
+    private LocalDate arrivalDate;
 
-    private int stayDays;
+    private Integer stayDays;
 
-    private int userId;
+    private Integer userId;
 
     private String userEmail;
 
 
 
 
-    public Reservation() {
-    }
-
-    public Reservation(String room, int price, int rooms, int persons, int children, String openBuffet,
-                       Date arrivalDate, int stayDays, int userId) {
-        this.room = room;
-        this.price = price;
-        this.rooms = rooms;
-        this.persons = persons;
-        this.children = children;
-        this.openBuffet = openBuffet;
-        this.arrivalDate = arrivalDate;
-        this.stayDays = stayDays;
-        this.userId = userId;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getRoom() {
-        return room;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setRoom(String room) {
-        this.room = room;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public int getRooms() {
+    public Integer getRooms() {
         return rooms;
     }
 
-    public void setRooms(int rooms) {
+    public void setRooms(Integer rooms) {
         this.rooms = rooms;
     }
 
-    public int getPersons() {
+    public Integer getPersons() {
         return persons;
     }
 
-    public void setPersons(int persons) {
+    public void setPersons(Integer persons) {
         this.persons = persons;
     }
 
-    public int getChildren() {
+    public Integer getChildren() {
         return children;
     }
 
-    public void setChildren(int children) {
+    public void setChildren(Integer children) {
         this.children = children;
     }
 
-    public String getOpenBuffet() {
-        return openBuffet;
+    public String getDinner() {
+        return dinner;
     }
 
-    public void setOpenBuffet(String openBuffet) {
-        this.openBuffet = openBuffet;
+    public void setDinner(String dinner) {
+        this.dinner = dinner;
     }
 
-    public Date getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
+    public void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public int getStayDays() {
+    public Integer getStayDays() {
         return stayDays;
     }
 
-    public void setStayDays(int stayDays) {
+    public void setStayDays(Integer stayDays) {
         this.stayDays = stayDays;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

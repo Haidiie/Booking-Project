@@ -1,0 +1,54 @@
+body{
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/unsplash3.jpg') center / cover;
+    color: #fff;
+    font-size: 14px;
+
+}
+
+
+.form-control {
+    display: block;
+    width: 42%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #706446;
+    background-image: none;
+    border: 1px solid #0c0a07;
+    border-radius: 4px;
+}
+
+#dateTime_arr{
+    color:black;
+}
+
+button {
+        border-radius: 20px;
+        background: #17150e;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        transition: transform 80ms ease-in;
+    
+}
+
+output{
+    color: #fff;
+}
+
+.cancel {
+    margin-left: 160px;
+}
+
+a{
+    color: #fff;
+}
+
+h3 {
+    margin-left: 150px;
+}
+
