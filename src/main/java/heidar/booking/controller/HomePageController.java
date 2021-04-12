@@ -42,7 +42,7 @@ public class HomePageController {
 
     @PostMapping("/process")
     public String ShowSuccessPage(@Valid @ModelAttribute("user") User user, BindingResult result) {
-        user.setRole("ROLE_ADMIN");
+        user.setRole("ROLE_USER");
         user.setPassword(userService.enCryptedPassword(user));
         if (result.hasErrors()) {
             System.out.println(result.toString());
