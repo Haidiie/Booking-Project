@@ -13,15 +13,18 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+	
+	<link rel="stylesheet" th:href="@{../css/reservation.css}">
 	<title>Your Reservation</title>
 </head>
 
 <body>
-
+	<br>
+	<div>
+		<a class="page-btns" href="/user/main">Main</a>
+	</div>
 	<!-- Reservations Table Section -->
 	<section class="container">
-		<h2 class="sub-title" id="user-res">User Reservations</h2>
 		<h2 class="re-lis-h2">Reservation List</h2>
 
 		<table class="table table-bordered table-responsive-lg" id="res-table">
@@ -35,7 +38,7 @@
 					<th>Persons</th>
 					<th>Children</th>
 					<th>Dinner</th>
-					<th>Stay Period</th>
+					<th>Stay Days</th>
 					<th>Arrival Date</th>
 					<th>Total Price</th>
 					<th>Action</th>
@@ -62,7 +65,7 @@
 							<div class="col-small">
 								<form th:action="@{/user/reservation-update}" method="POST">
 									<input type="hidden" name="resId" th:value="${tempRes.id}" />
-									<button type="submit" class="btn btn-info btn-lg">Update</button>
+									<button type="submit" class="btn btn-info btn-lg">Change</button>
 								</form>
 							</div>
 							<div class="col-small">

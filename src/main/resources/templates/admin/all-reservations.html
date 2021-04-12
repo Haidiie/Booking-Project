@@ -9,25 +9,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
+	<link rel="stylesheet" th:href="@{../css/reservation.css}">
     <title>All Reservations</title>
 </head>
 
 <body>
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/admin/main}">Home <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" th:action="@{/admin/reservations}" th:object="${resList}" method="get">
+            <label for="name"></label>
+            <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search for email">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
     <form ui-jp="parsley" th:action="@{/admin/reservations}" th:object="${resList}" method="get">
-        <div style="margin-left: 800px; margin-top: 20px; margin-bottom: 2px;" class="form-group">
+        <div style="display:none" class="form-group">
             <label for="name"></label>
             <input type="text" name="name" placeholder="Search Email here">
         </div>
-        <button style="margin-left: 802px; width: 185px;" type="submit" class="btn btn-primary">Search</button>
+        <button style="display:none;" type="submit">Search</button>
     </form>
 
     <!-- Reservations Table Section -->
     <section class="container">
         <h2>All Reservations</h2>
-        <h2>Reservation List</h2>
-
         <table class="table table-bordered table-responsive-lg"
             data-toggle="table"
             data-pagination="true"
@@ -71,7 +84,7 @@
                             <div class="col-small">
                                 <form th:action="@{/admin/reservation-update}" method="POST">
                                     <input type="hidden" name="resId" th:value="${tempRes.id}" />
-                                    <button type="submit" class="btn btn-info btn-lg">Update</button>
+                                    <button type="submit" class="btn btn-info btn-lg">Change</button>
                                 </form>
                             </div>
                             <div class="col-small">
