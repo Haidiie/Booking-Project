@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/unsplash5.jpg') center / cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/unsplash5.jpg') center / cover;
     font-size: 2rem;
 }
 
@@ -21,4 +21,14 @@ h2{
     text-align: center;
     color: #fff;
     font-size: 50px;
+}
+
+@media (min-width: 1200px) {
+    .admin-container{
+        max-width: 1600px;
+    }
+}
+
+.thead-admin{
+    cursor: pointer;
 }

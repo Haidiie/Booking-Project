@@ -24,6 +24,11 @@ public class UserPageController {
         return "/user/user-main";
     }
 
+    @GetMapping("/hotel-rooms")
+    public String showRoomDetailPage() {
+        return "/user/hotel-rooms";
+    }
+
     @GetMapping("/booking-rooms")
     public String newReservation(Model model) {
         model.addAttribute("newRes", new CurrentReservation());

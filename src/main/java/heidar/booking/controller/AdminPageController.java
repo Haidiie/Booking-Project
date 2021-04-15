@@ -42,7 +42,7 @@ public class AdminPageController {
         if(isNullOrEmpty(name)){
             model.addAttribute("resList", reservationRepo.findAll());
         }else {
-            allReservations = reservationRepo.findbyhavingemail(name);
+            allReservations = reservationRepo.findbyemail(name);
             model.addAttribute("resList", allReservations);
         }
 

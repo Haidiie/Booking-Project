@@ -16,5 +16,5 @@ public interface ReservationRepo extends JpaRepository<Reservation,Integer> {
     Collection<Reservation> findAllByUserId(int userId);
 
     @Query("select p from Reservation p where p.userEmail like %:n%")
-    List<Reservation> findbyhavingemail(@Param("n") String name);
+    List<Reservation> findbyemail(@Param("n") String name);
 }
