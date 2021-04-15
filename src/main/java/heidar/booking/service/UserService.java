@@ -69,7 +69,7 @@ public class UserService {
         currentReservation.setStayDays(reservation.getStayDays());
         currentReservation.setChildren(reservation.getChildren());
         currentReservation.setPersons(reservation.getPersons());
-        currentReservation.setUsertId(reservation.getUserId());
+        currentReservation.setUserId(reservation.getUserId());
         currentReservation.setRooms(reservation.getRooms());
         currentReservation.setPrice(reservation.getPrice());
         currentReservation.setRoomType(reservation.getRoomType());

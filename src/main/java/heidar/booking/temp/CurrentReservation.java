@@ -25,7 +25,7 @@ public class CurrentReservation {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate arrivalDate;
 
-    private Integer usertId;
+    private Integer userId;
 
 
 
@@ -103,12 +103,12 @@ public class CurrentReservation {
         this.arrivalDate = arrivalDate;
     }
 
-    public Integer getUsertId() {
-        return usertId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUsertId(Integer usertId) {
-        this.usertId = usertId;
+    public void setUserId(Integer usertId) {
+        this.userId = usertId;
     }
 
 

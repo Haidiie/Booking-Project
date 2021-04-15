@@ -39,26 +39,26 @@
     </form>
 
     <!-- Reservations Table Section -->
-    <section class="container">
+    <section class="admin-container container">
         <h2>All Reservations</h2>
-        <table class="table table-bordered table-responsive-lg"
+        <table id="myTable" class="table table-bordered table-responsive-lg"
             data-toggle="table"
             data-pagination="true"
             data-search="true">
 
             <!-- thead Table elements -->
-            <thead class="thead-dark">
+            <thead class="thead-admin thead-dark">
                 <tr>
-                    <th>Res ID</th>
-                    <th>Room</th>
-                    <th>Rooms</th>
-                    <th>Persons</th>
-                    <th>Children</th>
-                    <th>Dinner</th>
-                    <th>Stay Days</th>
-                    <th>Arrival Date</th>
-                    <th>Total Price</th>
-                    <th>User Email</th>
+                    <th onclick="sortTable(0)">Res ID &#8645</th>
+                    <th onclick="sortTable(1)">Room &#8645</th>
+                    <th onclick="sortTable(2)">Rooms &#8645</th>
+                    <th onclick="sortTable(3)">Persons &#8645</th>
+                    <th onclick="sortTable(4)">Children &#8645</th>
+                    <th onclick="sortTable(5)">Dinner &#8645</th>
+                    <th onclick="sortTable(6)">Stay Days &#8645</th>
+                    <th onclick="sortTable(7)">Arrival Date &#8645</th>
+                    <th onclick="sortTable(8)">Total Price &#8645</th>
+                    <th onclick="sortTable(9)">User Email &#8645</th>
                     <th>Action</th>
 
                 </tr>
@@ -101,7 +101,7 @@
             </tbody>
         </table>
     </section>
-
+    <script th:src="@{../scripts/sort-table.js}"></script>
 </body>
 
 </html>

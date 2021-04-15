@@ -1,5 +1,3 @@
-// process live cost price of reservation form
-
 $('.form-group').on('input', '.prc', function () {
 
     var totalPrice = 0;

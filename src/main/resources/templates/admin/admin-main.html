@@ -17,10 +17,33 @@
     <link rel="stylesheet" th:href="@{../css/homepage.css}">
   </head>
   <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+      <a class="navbar-brand" href="#">Signed in as: <span th:text="${#authentication.getPrincipal().getUsername()}"></span> <span th:text="${#authentication.getPrincipal().getUserRole()}"></span>  </a>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto text-uppercase">
+              <li class="nav-item">
+                  <a th:href="@{/admin/reservations}" class="nav-link">All Reservations</a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/admin/booking-rooms}" class="nav-link">Book a Room</a>
+              </li>
+              <li class="nav-item">
+                  <a th:href="@{/logout}" class="nav-link">Logout</a>
+              </li>
+          </ul>
+
+      </div>
+  </nav>
+
+  <div class="welcome">
+    <h1>Welcome <span th:text="${#authentication.getPrincipal().getUserFirstName()}"></span> <span th:text="${#authentication.getPrincipal().getUserLastName()}"></span>!</h1>
+  </div>
+
   <div class="page-btn">
-    <a class="page-btns" th:href="@{/admin/reservations}">All Reservations</a>
-    <a class="page-btns" th:href="@{/admin/booking-rooms}">    Booking Rooms   </a>
-    <a class="page-btns" th:href="@{/logout}">  Logout  </a>
+    <a class="page-btns" th:href="@{/admin/reservations}">Reservations</a>
   </div>
   </body>
 </html>
