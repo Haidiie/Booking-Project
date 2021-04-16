@@ -27,6 +27,8 @@ public class CurrentReservation {
 
     private Integer userId;
 
+    private String userEmail;
+
 
 
 
@@ -111,5 +113,11 @@ public class CurrentReservation {
         this.userId = usertId;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 }

@@ -18,7 +18,7 @@
 			<br>
 
 			<!-- Reservation form -->
-			<form name="resForm" th:action="@{/admin/proceed-reservation}" th:object="${newRes}" method="POST">
+			<form name="resForm" th:action="@{/admin/proceed-update-reservation}" th:object="${newRes}" method="POST">
 				
 				<div class="form-group">
 				
@@ -73,11 +73,15 @@
 					</select>
 				</div>
 
-
-				<div class="form-group">
-					<label>Guest Email</label> <input class="form-control prc" 
-						placeholder="Guest email" type="email"
+                <div class="form-group">
+					 <input class="form-control prc" 
+						placeholder="Guest email" type="hidden"
 						th:field="*{userEmail}" required />
+				</div>
+
+                <div class="form-group">
+					<input class="form-control prc" type="hidden"
+						th:field="*{userId}" required />
 				</div>
 
 				<!-- Arrival Date -->
