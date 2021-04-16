@@ -57,7 +57,7 @@ public class AdminPageController {
 
     @PostMapping("/proceed-reservation")
     public String proceedReservations(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
-        userService.saveOrUpdateReservation(currentReservation);
+        userService.saveOrUpdateAdminReservation(currentReservation);
         return "redirect:/admin/reservations";
     }
 

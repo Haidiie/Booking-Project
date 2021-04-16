@@ -61,6 +61,22 @@ public class UserService {
         reservationRepo.save(reservation);
     }
 
+    public void saveOrUpdateAdminReservation(CurrentReservation currentReservation) {
+        Reservation reservation = new Reservation();
+        reservation.setUserId(getLoggedUserId());
+        reservation.setUserEmail(currentReservation.getUserEmail());
+        reservation.setArrivalDate(currentReservation.getArrivalDate());
+        reservation.setDinner(currentReservation.getDinner());
+        reservation.setStayDays(currentReservation.getStayDays());
+        reservation.setChildren(currentReservation.getChildren());
+        reservation.setPersons(currentReservation.getPersons());
+        reservation.setPrice(currentReservation.getPrice());
+        reservation.setRooms(currentReservation.getRooms());
+        reservation.setRoomType(currentReservation.getRoomType());
+        reservation.setId(currentReservation.getId());
+        reservationRepo.save(reservation);
+    }
+
     public CurrentReservation reservationToCurrentReservationById(int resId) {
         Reservation reservation = getReservationForLoggedUserById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
