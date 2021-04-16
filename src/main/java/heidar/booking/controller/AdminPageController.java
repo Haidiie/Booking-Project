@@ -55,9 +55,21 @@ public class AdminPageController {
         return "/admin/booking-rooms";
     }
 
+    @GetMapping("/update-booking")
+    public String updateReservations(Model model) {
+        model.addAttribute("newRes", new CurrentReservation());
+        return "/admin/update-booking";
+    }
+
+    @PostMapping("/proceed-update-reservation")
+    public String proceedUpdateReservations(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
+        userService.updateAdminReservation(currentReservation);
+        return "redirect:/admin/reservations";
+    }
+
     @PostMapping("/proceed-reservation")
     public String proceedReservations(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
-        userService.saveOrUpdateAdminReservation(currentReservation);
+        userService.saveAdminReservation(currentReservation);
         return "redirect:/admin/reservations";
     }
 
@@ -69,8 +81,9 @@ public class AdminPageController {
 
     @PostMapping("/reservation-update")
     public String updateReservation(@RequestParam("resId") int resId, Model model) {
-        model.addAttribute("newRes", userService.reservationToCurrentReservationById(resId));
-        return "/admin/booking-rooms";
+        model.addAttribute("newRes", userService.reservationToAdminCurrentReservationById(resId));
+        /////////////
+        return "/admin/update-booking";
     }
 
 }
