@@ -11,46 +11,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-
-
 @Service
-public class UserService {
-
+public class AdminService {
     private final UserRepo userRepo;
     private final ReservationRepo reservationRepo;
     private final BCryptPasswordEncoder encrypt;
 
     @Autowired
-    public UserService(UserRepo userRepo, ReservationRepo reservationRepo, BCryptPasswordEncoder encrypt) {
+    public AdminService(UserRepo userRepo, ReservationRepo reservationRepo, BCryptPasswordEncoder encrypt) {
         this.userRepo = userRepo;
         this.reservationRepo = reservationRepo;
         this.encrypt = encrypt;
     }
 
-    public String enCryptedPassword(User user) {
-        return encrypt.encode(user.getPassword());
-    }
-
-
-    public void save(User user) {
-        userRepo.save(user);
-    }
-
-    //hämtar alla personliga reservationer för användare
-    public Collection<Reservation> getReservationsForLoggedUser() {
-        return reservationRepo.findAllByUserId((getLoggedUserId()));
-    }
-
-    //raderar reservation
     public void deleteReservation(int resId) {
         reservationRepo.deleteById(resId);
     }
 
-    public void saveOrUpdateReservation(CurrentReservation currentReservation) {
+    public void saveAdminReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
         reservation.setUserId(getLoggedUserId());
-        reservation.setUserEmail(getLoggedUserEmail());
+        reservation.setUserEmail(currentReservation.getUserEmail());
         reservation.setArrivalDate(currentReservation.getArrivalDate());
         reservation.setDinner(currentReservation.getDinner());
         reservation.setStayDays(currentReservation.getStayDays());
@@ -63,7 +44,24 @@ public class UserService {
         reservationRepo.save(reservation);
     }
 
-    public CurrentReservation reservationToCurrentReservationById(int resId) {
+    public void updateAdminReservation(CurrentReservation currentReservation) {
+        Reservation reservation = new Reservation();
+        reservation.setUserId(currentReservation.getUserId());
+        reservation.setUserEmail(currentReservation.getUserEmail());
+        reservation.setArrivalDate(currentReservation.getArrivalDate());
+        reservation.setDinner(currentReservation.getDinner());
+        reservation.setStayDays(currentReservation.getStayDays());
+        reservation.setChildren(currentReservation.getChildren());
+        reservation.setPersons(currentReservation.getPersons());
+        reservation.setPrice(currentReservation.getPrice());
+        reservation.setRooms(currentReservation.getRooms());
+        reservation.setRoomType(currentReservation.getRoomType());
+        reservation.setId(currentReservation.getId());
+        reservationRepo.save(reservation);
+    }
+
+
+    public CurrentReservation reservationToAdminCurrentReservationById(int resId) {
         Reservation reservation = getReservationForLoggedUserById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
         currentReservation.setArrivalDate(reservation.getArrivalDate());
@@ -76,6 +74,7 @@ public class UserService {
         currentReservation.setPrice(reservation.getPrice());
         currentReservation.setRoomType(reservation.getRoomType());
         currentReservation.setId(reservation.getId());
+        currentReservation.setUserEmail(reservation.getUserEmail());
         return currentReservation;
     }
 
@@ -100,5 +99,4 @@ public class UserService {
         }
         return principal.toString();
     }
-
 }

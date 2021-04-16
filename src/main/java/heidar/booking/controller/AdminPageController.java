@@ -3,6 +3,7 @@ package heidar.booking.controller;
 
 import heidar.booking.model.Reservation;
 import heidar.booking.repo.ReservationRepo;
+import heidar.booking.service.AdminService;
 import heidar.booking.service.UserService;
 import heidar.booking.temp.CurrentReservation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,13 @@ public class AdminPageController {
 
     private final ReservationRepo reservationRepo;
     private final UserService userService;
+    private final AdminService adminService;
 
     @Autowired
-    public AdminPageController(ReservationRepo reservationRepo, UserService userService) {
+    public AdminPageController(ReservationRepo reservationRepo, UserService userService, AdminService adminService) {
         this.reservationRepo = reservationRepo;
         this.userService = userService;
+        this.adminService = adminService;
     }
 
     public List<Reservation> allReservations;
@@ -63,25 +66,25 @@ public class AdminPageController {
 
     @PostMapping("/proceed-update-reservation")
     public String proceedUpdateReservations(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
-        userService.updateAdminReservation(currentReservation);
+        adminService.updateAdminReservation(currentReservation);
         return "redirect:/admin/reservations";
     }
 
     @PostMapping("/proceed-reservation")
     public String proceedReservations(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
-        userService.saveAdminReservation(currentReservation);
+        adminService.saveAdminReservation(currentReservation);
         return "redirect:/admin/reservations";
     }
 
     @PostMapping("/reservation-delete")
     public String deleteReservation(@RequestParam("resId") int resId) {
-        userService.deleteReservation(resId);
+        adminService.deleteReservation(resId);
         return "redirect:/admin/reservations";
     }
 
     @PostMapping("/reservation-update")
     public String updateReservation(@RequestParam("resId") int resId, Model model) {
-        model.addAttribute("newRes", userService.reservationToAdminCurrentReservationById(resId));
+        model.addAttribute("newRes", adminService.reservationToAdminCurrentReservationById(resId));
         /////////////
         return "/admin/update-booking";
     }
