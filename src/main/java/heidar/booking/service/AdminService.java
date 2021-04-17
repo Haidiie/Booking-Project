@@ -30,7 +30,7 @@ public class AdminService {
 
     public void saveAdminReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
-        reservation.setUserId(getLoggedUserId());
+        reservation.setUserId(currentReservation.getUserId());
         reservation.setUserEmail(currentReservation.getUserEmail());
         reservation.setArrivalDate(currentReservation.getArrivalDate());
         reservation.setDinner(currentReservation.getDinner());
