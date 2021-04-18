@@ -46,3 +46,13 @@ body{
 	filter: grayscale(0%);
 	cursor: pointer;
 }
+
+.page-btns {
+    border: 2px solid black;
+    color: black;
+    padding: 25px 40px;
+    margin: 3px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: "montserrat";
+}

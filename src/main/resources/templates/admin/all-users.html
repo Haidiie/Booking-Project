@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" th:href="@{../css/reservation.css}">
+    <link rel="stylesheet" th:href="@{../css/reservation.css}">
     <title>All Registred Users</title>
 </head>
 
@@ -17,18 +17,18 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" th:href="@{/admin/main}">Home <span class="sr-only">(current)</span></a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0" th:action="@{/admin/users}" th:object="${userList}" method="get">
-            <label for="name"></label>
-            <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search for email">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/admin/main}">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" th:action="@{/admin/users}" th:object="${userList}" method="get">
+                <label for="name"></label>
+                <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search for email">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-      </nav>
+    </nav>
 
     <form ui-jp="parsley" th:action="@{/admin/users}" th:object="${userList}" method="get">
         <div style="display:none" class="form-group">
@@ -40,10 +40,8 @@
 
     <!-- Reservations Table Section -->
     <section class="admin-container container">
-        <h2>All Reservations</h2>
-        <table id="myTable" class="table table-bordered table-responsive-lg"
-            data-toggle="table"
-            data-pagination="true"
+        <h2>All Registred Users</h2>
+        <table id="myTable" class="table table-bordered table-responsive-lg" data-toggle="table" data-pagination="true"
             data-search="true">
 
             <!-- thead Table elements -->

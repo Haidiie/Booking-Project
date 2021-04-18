@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" th:href="@{../css/booking.css}">
-	<title>Reservation</title>
+	<title>Book a Room</title>
 </head>
 
 <body>
@@ -25,42 +25,41 @@
 					<!-- Room Type -->
 					<input type="hidden" th:field="*{id}" /> <label>Room Type</label>
 					<select class="form-control prc" th:field="*{roomType}" required>
-						<option value="Single Deluxe">Single Deluxe</option>
-						<option value="Single Standard">Single Standard</option>
-						<option value="Double Deluxe">Double Deluxe</option>
-						<option value="Double Standard">Double Standard</option>
-						<option value="Family Deluxe">Family Deluxe</option>
-						<option value="Family Standard">Family Standard</option>
-						<option value="Honeymoon Suite">Honeymoon Suite</option>
-						<option value="Honeymoon Deluxe Suite">Honeymoon Deluxe
-							Suite</option>
+						<option value="Junior Suite">Junior Suite</option>
+						<option value="Single Room">Single Room</option>
+						<option value="Superior Suite">Superior Suite</option>
+						<option value="Executive Suite">Executive Suite</option>
+						<option value="Rooftop Suite">Rooftop Suite</option>
+						<option value="Terrace Suite">Terrace Suite</option>
+						<option value="Royal Suite">Royal Suite</option>
+						<option value="Deluxe Room">Deluxe Room</option>
 					</select>
 				</div>
 		
 				<!-- Stay days -->
 				<div class="form-group">
 					<label>Staying days</label> <input class="form-control prc" th:field="*{stayDays}"
-						placeholder="Number of Days" pattern="^(?:[1-9]|[1-4][0-9]|50)$" type="number" required />
+						placeholder="Number of Days" type="number" required />
 				</div>
 
 				<!-- Number of Rooms -->
 				<div class="form-group">
 					<label>Number of rooms</label> <input class="form-control prc" 
-						th:field="*{rooms}" pattern="^(?:[1-9]|[1-4][0-9]|50)$" type="number" placeholder="Rooms"
+						th:field="*{rooms}" type="number" placeholder="Rooms"
 						required />
 				</div>
 
 				<!-- Number of Persons -->
 				<div class="form-group">
 					<label>Number of adults</label> <input class="form-control prc" 
-						placeholder="Adults age 18+" type="number" pattern="^(?:[1-9]|[1-4][0-9]|50)$"
+						placeholder="Adults age 18+" type="number"
 						th:field="*{persons}" required />
 				</div>
 
 				<!-- Number of Children -->
 				<div class="form-group">
 					<label>Number of children</label> <input class="form-control prc" 
-						placeholder="Children age 6+" type="number" pattern="^(?:[0-9]|[1-4][0-9]|50)$"
+						placeholder="Children age 6+" type="number"
 						th:field="*{children}" required />
 				</div>
 

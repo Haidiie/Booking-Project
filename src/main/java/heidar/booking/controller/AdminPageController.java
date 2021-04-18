@@ -6,7 +6,6 @@ import heidar.booking.model.User;
 import heidar.booking.repo.ReservationRepo;
 import heidar.booking.repo.UserRepo;
 import heidar.booking.service.AdminService;
-import heidar.booking.service.UserService;
 import heidar.booking.temp.CurrentReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,13 +21,11 @@ public class AdminPageController {
 
     private final ReservationRepo reservationRepo;
     private final UserRepo userRepo;
-    private final UserService userService;
     private final AdminService adminService;
 
     @Autowired
-    public AdminPageController(ReservationRepo reservationRepo, UserService userService, AdminService adminService, UserRepo userRepo) {
+    public AdminPageController(ReservationRepo reservationRepo, AdminService adminService, UserRepo userRepo) {
         this.reservationRepo = reservationRepo;
-        this.userService = userService;
         this.adminService = adminService;
         this.userRepo = userRepo;
     }
