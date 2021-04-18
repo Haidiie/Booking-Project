@@ -11,6 +11,7 @@ body{
     cursor: pointer;
     background: black;
     font-family: "montserrat";
+    font-size: 20px;
 }
 
 .table {

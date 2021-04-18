@@ -2,9 +2,10 @@ package heidar.booking.controller;
 
 
 import heidar.booking.model.Reservation;
+import heidar.booking.model.User;
 import heidar.booking.repo.ReservationRepo;
+import heidar.booking.repo.UserRepo;
 import heidar.booking.service.AdminService;
-import heidar.booking.service.UserService;
 import heidar.booking.temp.CurrentReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,17 +20,18 @@ import java.util.List;
 public class AdminPageController {
 
     private final ReservationRepo reservationRepo;
-    private final UserService userService;
+    private final UserRepo userRepo;
     private final AdminService adminService;
 
     @Autowired
-    public AdminPageController(ReservationRepo reservationRepo, UserService userService, AdminService adminService) {
+    public AdminPageController(ReservationRepo reservationRepo, AdminService adminService, UserRepo userRepo) {
         this.reservationRepo = reservationRepo;
-        this.userService = userService;
         this.adminService = adminService;
+        this.userRepo = userRepo;
     }
 
     public List<Reservation> allReservations;
+    public List<User> allUsers;
 
     @GetMapping("/main")
     public String showMainPage() {
@@ -50,6 +52,18 @@ public class AdminPageController {
         }
 
         return "/admin/all-reservations";
+    }
+
+    @GetMapping("/users")
+    public String showAllUsers(Model model, String name) {
+        if(isNullOrEmpty(name)){
+            model.addAttribute("userList", userRepo.findAll());
+        }else {
+            allUsers = userRepo.findbyemail(name);
+            model.addAttribute("userList", allUsers);
+        }
+
+        return "/admin/all-users";
     }
 
     @GetMapping("/booking-rooms")
