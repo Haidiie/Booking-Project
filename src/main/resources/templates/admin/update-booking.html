@@ -23,7 +23,7 @@
 				<div class="form-group">
 				
 					<!-- Room Type -->
-					<input type="hidden" th:field="*{id}" /> <label>Room Type</label>
+					<input type="hidden" th:field="*{id}" /> <label>Room type</label>
 					<select class="form-control prc" th:field="*{roomType}" required>
 						<option value="Junior Suite">Junior Suite</option>
 						<option value="Single Room">Single Room</option>
@@ -39,26 +39,26 @@
 				<!-- Stay days -->
 				<div class="form-group">
 					<label>Staying days</label> <input class="form-control prc" th:field="*{stayDays}"
-						placeholder="Number of Days" type="number" required />
+						placeholder="Number of staying days" type="number" required />
 				</div>
 
 				<!-- Number of Rooms -->
 				<div class="form-group">
-					<label>Number of rooms</label> <input class="form-control prc" 
-						th:field="*{rooms}" type="number" placeholder="Rooms"
+					<label>Rooms</label> <input class="form-control prc" 
+						th:field="*{rooms}" type="number" placeholder="Number of rooms"
 						required />
 				</div>
 
 				<!-- Number of Persons -->
 				<div class="form-group">
-					<label>Number of adults</label> <input class="form-control prc" 
-						placeholder="Adults age 18+" type="number" th:field="*{persons}" required />
+					<label>Adults</label> <input class="form-control prc" 
+						placeholder="Number of adults age 18+" type="number" th:field="*{persons}" required />
 				</div>
 
 				<!-- Number of Children -->
 				<div class="form-group">
-					<label>Number of children</label> <input class="form-control prc" 
-						placeholder="Children age 6+" type="number" th:field="*{children}" required />
+					<label>Children</label> <input class="form-control prc" 
+						placeholder="Number of children age 6+" type="number" th:field="*{children}" required />
 				</div>
 
 				<!-- Restaurant Buffet -->
@@ -83,7 +83,7 @@
 
 				<!-- Arrival Date -->
 				<div class="form-group">
-					<label>Visiting start from date </label> <br> <label class="date-label">Arrival Date:</label><input
+					<label>Visiting start from date </label> <br> <label class="date-label">Arrival date:</label><input
 						th:field="*{arrivalDate}" type="date" id="dateTime_arr" name="dateTime" required />
 				</div>
 

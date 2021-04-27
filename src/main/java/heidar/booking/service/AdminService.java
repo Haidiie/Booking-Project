@@ -1,7 +1,9 @@
 package heidar.booking.service;
 
 import heidar.booking.model.Reservation;
+import heidar.booking.model.User;
 import heidar.booking.repo.ReservationRepo;
+import heidar.booking.repo.UserRepo;
 import heidar.booking.temp.CurrentReservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminService {
     private final ReservationRepo reservationRepo;
+    private final UserRepo userRepo;
 
     @Autowired
-    public AdminService(ReservationRepo reservationRepo) {
+    public AdminService(ReservationRepo reservationRepo, UserRepo userRepo) {
         this.reservationRepo = reservationRepo;
+        this.userRepo = userRepo;
     }
 
     public void deleteReservation(int resId) {
@@ -21,8 +25,9 @@ public class AdminService {
 
     public void saveAdminReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
+        User user = userRepo.findbyId(currentReservation.getUserId());
+        reservation.setUserEmail(user.getEmail());
         reservation.setUserId(currentReservation.getUserId());
-        reservation.setUserEmail(currentReservation.getUserEmail());
         reservation.setArrivalDate(currentReservation.getArrivalDate());
         reservation.setDinner(currentReservation.getDinner());
         reservation.setStayDays(currentReservation.getStayDays());
@@ -52,7 +57,7 @@ public class AdminService {
     }
 
 
-    public CurrentReservation reservationToAdminCurrentReservationById(int resId) {
+    public CurrentReservation adminCurrentReservationById(int resId) {
         Reservation reservation = getReservationForLoggedUserById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
         currentReservation.setArrivalDate(reservation.getArrivalDate());
