@@ -98,7 +98,7 @@ public class AdminPageController {
 
     @PostMapping("/reservation-update")
     public String updateReservation(@RequestParam("resId") int resId, Model model) {
-        model.addAttribute("newRes", adminService.reservationToAdminCurrentReservationById(resId));
+        model.addAttribute("newRes", adminService.adminCurrentReservationById(resId));
         /////////////
         return "/admin/update-booking";
     }

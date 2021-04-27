@@ -63,7 +63,7 @@ public class UserService {
         reservationRepo.save(reservation);
     }
 
-    public CurrentReservation reservationToCurrentReservationById(int resId) {
+    public CurrentReservation currentReservationById(int resId) {
         Reservation reservation = getReservationForLoggedUserById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
         currentReservation.setArrivalDate(reservation.getArrivalDate());
@@ -84,16 +84,16 @@ public class UserService {
     }
 
     public int getLoggedUserId() {
-        User user = userRepo.findByEmail(loggedUserEmail());
+        User user = userRepo.findByEmail(loggedUser());
         return user.getId();
     }
 
     public String getLoggedUserEmail() {
-        User user = userRepo.findByEmail(loggedUserEmail());
+        User user = userRepo.findByEmail(loggedUser());
         return user.getEmail();
     }
 
-    private String loggedUserEmail() {
+    private String loggedUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             return ((UserDetails) principal).getUsername();

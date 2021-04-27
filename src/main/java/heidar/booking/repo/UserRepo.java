@@ -12,6 +12,9 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User,Integer>{
     User findByEmail(String email);
 
+    @Query("select p from User p where p.id = :n")
+    User findbyId(@Param("n") Integer id);
+
     @Query("select p from User p where p.email like %:n%")
     List<User> findbyemail(@Param("n") String name);
 }

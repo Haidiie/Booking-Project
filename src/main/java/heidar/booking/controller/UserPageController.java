@@ -55,7 +55,7 @@ public class UserPageController {
 
     @PostMapping("/reservation-update")
     public String updateReservation(@RequestParam("resId") int resId, Model model) {
-        model.addAttribute("newRes", userService.reservationToCurrentReservationById(resId));
+        model.addAttribute("newRes", userService.currentReservationById(resId));
         return "/user/booking-rooms";
     }
 
