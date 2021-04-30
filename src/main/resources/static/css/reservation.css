@@ -1,35 +1,36 @@
-body{
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/unsplash5.jpg') center / cover;
-    font-size: 2rem;
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("../images/unsplash5.jpg") center / cover;
+  font-size: 2rem;
 }
 
 .page-btns {
-    border: 2px solid white;
-    color: white;
-    padding: 25px 40px;
-    margin: 3px;
-    cursor: pointer;
-    background: black;
-    font-family: "montserrat";
-    font-size: 20px;
+  border: 2px solid white;
+  color: white;
+  padding: 25px 40px;
+  margin: 3px;
+  cursor: pointer;
+  background: black;
+  font-family: "montserrat";
+  font-size: 20px;
 }
 
 .table {
-    color: #fff;
+  color: #fff;
 }
 
-h2{
-    text-align: center;
-    color: #fff;
-    font-size: 50px;
+h2 {
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
 }
 
 @media (min-width: 1200px) {
-    .admin-container{
-        max-width: 1600px;
-    }
+  .admin-container {
+    max-width: 1600px;
+  }
 }
 
-.thead-admin{
-    cursor: pointer;
+.thead-admin {
+  cursor: pointer;
 }

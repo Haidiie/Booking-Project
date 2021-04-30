@@ -1,35 +1,29 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- Reference Google fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-
-	<!-- Reference Bootstrap and local files -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	
 	<link rel="stylesheet" th:href="@{../css/reservation.css}">
 	<title>Your Reservation</title>
 </head>
 
 <body>
 	<br>
+	<!-- Main knappen -->
 	<div>
 		<a class="page-btns" href="/user/main">Main</a>
 	</div>
-	<!-- Reservations Table Section -->
 	<section class="container">
-		<h2 class="re-lis-h2"><span th:text="${#authentication.getPrincipal().getUserFirstName()}"></span>s Reservation List</h2>
-
-		<table class="table table-bordered table-responsive-lg" id="res-table">
-
-			<!-- thead Table elements -->
+		<!-- användarens förnamn för reservatios titeln -->
+		<h2 class="re-lis-h2"><span th:text="${#authentication.getPrincipal().getUserFirstName()}"></span>s Reservation
+			List</h2>
+		<!-- Reservations tabell -->
+		<table class="table table-bordered table-responsive-lg">
+			<!-- Kolumn namn -->
 			<thead class="thead-dark">
 				<tr>
 					<th>Res ID</th>
@@ -42,11 +36,9 @@
 					<th>Arrival Date</th>
 					<th>Total Price</th>
 					<th>Action</th>
-
 				</tr>
 			</thead>
-
-			<!-- loop in each reservation -->
+			<!-- Utskrift av reservation i tabellen -->
 			<tbody>
 				<tr th:each=" tempRes : ${resList}">
 					<td style="text-align: center; vertical-align: middle;" th:text="${tempRes.id}" />
@@ -60,7 +52,7 @@
 						id="arr_str" />
 					<td style="text-align: center; vertical-align: middle;" th:text="${tempRes.price}" />
 					<td>
-						<!-- Update and Delete -->
+						<!-- Ändra eller radera knappen i tabellen -->
 						<div class="rows">
 							<div class="col-small">
 								<form th:action="@{/user/reservation-update}" method="POST">
@@ -81,9 +73,7 @@
 				</tr>
 			</tbody>
 		</table>
-
 	</section>
-
 </body>
 
 </html>

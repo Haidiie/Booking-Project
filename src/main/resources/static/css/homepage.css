@@ -1,40 +1,37 @@
-body{
-    /*background-image: url("img/start.jpg");*/
-    background: url('../images/pixabay1.jpg');
-    background-size: cover;
-    font-family: sans-serif;
-    font-size: 18px;
+body {
+  background: url("../images/pixabay1.jpg");
+  background-size: cover;
+  font-family: sans-serif;
+  font-size: 18px;
 }
 
-.page-btn{
-    text-align: center;
-    margin-top: 390px;
+.page-btn {
+  text-align: center;
+  margin-top: 390px;
 }
 
-.page-btns{
-    border-radius: 20px;
-    background: #542e22c7;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    transition: transform 80ms ease-in;
-
-    margin-right: 15px;
+.page-btns {
+  border-radius: 20px;
+  background: #542e22c7;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  transition: transform 80ms ease-in;
+  margin-right: 15px;
 }
-
 
 .navbar-dark .navbar-nav .nav-link {
-    color: #fff;
+  color: #fff;
 }
 
-.welcome{
-    text-align: center;
-    color: #fff;
-    font-family: none;
+.welcome {
+  text-align: center;
+  color: #fff;
+  font-family: none;
 }
 
 .admin-role {
-    margin-left: 30px;
+  margin-left: 30px;
 }
