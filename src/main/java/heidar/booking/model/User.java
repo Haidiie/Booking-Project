@@ -30,7 +30,7 @@ public class User implements Serializable {
     private String role;
 
 
-
+    //Getter och Setters
     public Integer getId() {
         return id;
     }

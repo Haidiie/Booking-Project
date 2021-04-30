@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
-
 @Service
 public class UserService {
 
@@ -28,13 +27,35 @@ public class UserService {
         this.encrypt = encrypt;
     }
 
+    //kryptera användares lösenord
     public String enCryptedPassword(User user) {
         return encrypt.encode(user.getPassword());
     }
 
-
+    //spara användare
     public void save(User user) {
         userRepo.save(user);
+    }
+
+    //identifierar inloggad användare
+    private String loggedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        }
+        return principal.toString();
+    }
+
+    //hämtar user id för inloggad användare
+    public int getLoggedUserId() {
+        User user = userRepo.findByEmail(loggedUser());
+        return user.getId();
+    }
+
+    //hämtar email för inloggad användare
+    public String getLoggedUserEmail() {
+        User user = userRepo.findByEmail(loggedUser());
+        return user.getEmail();
     }
 
     //hämtar alla personliga reservationer för användare
@@ -47,6 +68,7 @@ public class UserService {
         reservationRepo.deleteById(resId);
     }
 
+    //spara eller ändra reservation
     public void saveOrUpdateReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
         reservation.setUserId(getLoggedUserId());
@@ -63,8 +85,14 @@ public class UserService {
         reservationRepo.save(reservation);
     }
 
+    //hämtar reservations id från reservations repository
+    public Reservation getReservationById(int resId) {
+        return reservationRepo.findById(resId);
+    }
+
+    //hämtar all sparad info för reservationen
     public CurrentReservation currentReservationById(int resId) {
-        Reservation reservation = getReservationForLoggedUserById(resId);
+        Reservation reservation = getReservationById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
         currentReservation.setArrivalDate(reservation.getArrivalDate());
         currentReservation.setDinner(reservation.getDinner());
@@ -77,28 +105,6 @@ public class UserService {
         currentReservation.setRoomType(reservation.getRoomType());
         currentReservation.setId(reservation.getId());
         return currentReservation;
-    }
-
-    public Reservation getReservationForLoggedUserById(int resId) {
-        return reservationRepo.findById(resId);
-    }
-
-    public int getLoggedUserId() {
-        User user = userRepo.findByEmail(loggedUser());
-        return user.getId();
-    }
-
-    public String getLoggedUserEmail() {
-        User user = userRepo.findByEmail(loggedUser());
-        return user.getEmail();
-    }
-
-    private String loggedUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            return ((UserDetails) principal).getUsername();
-        }
-        return principal.toString();
     }
 
 }

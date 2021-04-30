@@ -24,22 +24,26 @@ public class HomePageController {
         this.userService = userService;
     }
 
+    //inloggnings sidan
     @GetMapping("/")
     public String showHomePage(){
         return "signin";
     }
 
+    //inloggnigs sidan 2
     @GetMapping("/signin")
     public String showLoginPage() {
         return "signin";
     }
 
+    //registrerings sidan
     @GetMapping("/signup")
     public String Registeration(Model model) {
         model.addAttribute("user", new User());
         return "signup";
     }
 
+    //genomföring av konto registrering
     @PostMapping("/process")
     public String ShowSuccessPage(@Valid @ModelAttribute("user") User user, BindingResult result) {
         user.setRole("ROLE_USER");
@@ -53,6 +57,7 @@ public class HomePageController {
         return "signin";
     }
 
+    //identifiering av admin eller user till rätt websida
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
