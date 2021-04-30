@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="utf-8">
@@ -10,19 +10,15 @@
 </head>
 
 <body>
-	<!-- Hotel Booking Section -->
 	<div class="container">
 		<div style="margin-left: 83px;">
 			<br><br>
 			<h3>Booking Form</h3>
 			<br>
-
-			<!-- Reservation form -->
+			<!-- Bokningsformuläret -->
 			<form name="resForm" th:action="@{/user/proceed-reservation}" th:object="${newRes}" method="POST">
-				
 				<div class="form-group">
-				
-					<!-- Room Type -->
+					<!-- Val av Room Type -->
 					<input type="hidden" th:field="*{id}" /> <label>Room type</label>
 					<select class="form-control prc" th:field="*{roomType}" required>
 						<option value="Junior Suite">Junior Suite</option>
@@ -35,71 +31,57 @@
 						<option value="Deluxe Room">Deluxe Room</option>
 					</select>
 				</div>
-		
-				<!-- Stay days -->
+				<!-- Inskrivning av Staying days -->
 				<div class="form-group">
 					<label>Staying days</label> <input class="form-control prc" th:field="*{stayDays}"
 						placeholder="Number of staying days" type="number" required />
 				</div>
-
-				<!-- Number of Rooms -->
+				<!-- Inskrivning av Rooms -->
 				<div class="form-group">
-					<label>Rooms</label> <input class="form-control prc" 
-						th:field="*{rooms}" type="number" placeholder="Number of rooms"
-						required />
+					<label>Rooms</label> <input class="form-control prc" th:field="*{rooms}" type="number"
+						placeholder="Number of rooms" required />
 				</div>
-
-				<!-- Number of Persons -->
+				<!-- Inskrivning av Adults -->
 				<div class="form-group">
-					<label>Adults</label> <input class="form-control prc" 
-						placeholder="Number of adults age 18+" type="number" th:field="*{persons}" required />
+					<label>Adults</label> <input class="form-control prc" placeholder="Number of adults age 18+"
+						type="number" th:field="*{persons}" required />
 				</div>
-
-				<!-- Number of Children -->
+				<!-- Inskrivning av Children -->
 				<div class="form-group">
-					<label>Children</label> <input class="form-control prc" 
-						placeholder="Number of children age 6+" type="number" th:field="*{children}" required />
+					<label>Children</label> <input class="form-control prc" placeholder="Number of children age 6+"
+						type="number" th:field="*{children}" required />
 				</div>
-
-				<!-- Restaurant Buffet -->
+				<!-- Val av including dinner -->
 				<div class="form-group">
-					<label>Including dinner</label> <select class="form-control prc" 
-						th:field="*{dinner}" required>
+					<label>Including dinner</label> <select class="form-control prc" th:field="*{dinner}" required>
 						<option value="YES">Yes</option>
 						<option value="NO">No</option>
 					</select>
 				</div>
-
-				<!-- Arrival Date -->
+				<!-- Val av Arrival Date -->
 				<div class="form-group">
 					<label>Visiting start from date </label> <br> <label class="date-label">Arrival date:</label><input
 						th:field="*{arrivalDate}" type="date" id="dateTime_arr" name="dateTime" required />
 				</div>
-
-				<!-- hidden field to pass next live price value in this label to complete reservation -->
+				<!-- dold fält för att skicka live priset i denna "label" för att genomföra bokningen  -->
 				<div class="form-group">
 					<input type="hidden" id="priceField" value="" th:field="*{price}" />
 				</div>
-
-				<!-- Live price count -->
+				<!-- Live pris räkning -->
 				<div class="form-group">
 					<div class="price-lab">
 						TOTAL PRICE: <label><output class="price-fi" id="price-count"></output></label> kr
 					</div>
 				</div>
-
-				<!-- submit form -->
+				<!-- Genomföra eller avbryta formulären -->
 				<button type="submit" class="sub-btn">Submit</button>
 				<button class="cancel"><a class="button" th:href="@{/user/main}">Cancel</a></button>
 			</form>
-			<!-- <button class="sub-btn">Cancel</button> -->
 		</div>
 	</div>
-
-	<!-- Reference Javascript and local files -->
+	<!-- Javascript -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script th:src="@{../scripts/price.js}"></script>
-
 </body>
 
 </html>

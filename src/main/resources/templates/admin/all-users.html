@@ -1,11 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <!-- Reference Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -14,12 +12,12 @@
 </head>
 
 <body>
-
+    <!-- Navbar för main knappen till vänster, sök rutan till höger -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/admin/main}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" th:href="@{/admin/main}">Main</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" th:action="@{/admin/users}" th:object="${userList}" method="get">
@@ -29,7 +27,6 @@
             </form>
         </div>
     </nav>
-
     <form ui-jp="parsley" th:action="@{/admin/users}" th:object="${userList}" method="get">
         <div style="display:none" class="form-group">
             <label for="name"></label>
@@ -38,13 +35,11 @@
         <button style="display:none;" type="submit">Search</button>
     </form>
 
-    <!-- Reservations Table Section -->
+    <!-- Alla Users tabell -->
     <section class="admin-container container">
         <h2>All Registred Users</h2>
-        <table id="myTable" class="table table-bordered table-responsive-lg" data-toggle="table" data-pagination="true"
-            data-search="true">
-
-            <!-- thead Table elements -->
+        <table id="myTable" class="table table-bordered table-responsive-lg">
+            <!-- Kolumn namn -->
             <thead class="thead-admin thead-dark">
                 <tr>
                     <th>User ID</th>
@@ -53,8 +48,7 @@
                     <th>User Last Name</th>
                 </tr>
             </thead>
-
-            <!-- loop in each reservation -->
+            <!-- Utskrift av users i tabellen -->
             <tbody>
                 <tr th:each=" user : ${userList}">
                     <td style="text-align: center; vertical-align: middle;" th:text="${user.id}" />
