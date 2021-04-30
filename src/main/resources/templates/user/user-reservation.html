@@ -25,7 +25,7 @@
 	</div>
 	<!-- Reservations Table Section -->
 	<section class="container">
-		<h2 class="re-lis-h2">Reservation List</h2>
+		<h2 class="re-lis-h2"><span th:text="${#authentication.getPrincipal().getUserFirstName()}"></span>s Reservation List</h2>
 
 		<table class="table table-bordered table-responsive-lg" id="res-table">
 

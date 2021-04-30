@@ -7,32 +7,20 @@ import java.time.LocalDate;
 public class CurrentReservation {
 
     private Integer id;
-
     private Integer stayDays;
-
     private String roomType;
-
     private Integer price;
-
     private Integer rooms;
-
     private Integer persons;
-
     private Integer children;
-
     private String dinner;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate arrivalDate;
-
     private Integer userId;
-
     private String userEmail;
 
 
-
-
-
+    //Getter och Setters
     public Integer getId() {
         return id;
     }

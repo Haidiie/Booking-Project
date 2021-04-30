@@ -19,11 +19,8 @@ public class AdminService {
         this.userRepo = userRepo;
     }
 
-    public void deleteReservation(int resId) {
-        reservationRepo.deleteById(resId);
-    }
-
-    public void saveAdminReservation(CurrentReservation currentReservation) {
+    //spara reservation
+    public void saveReservation(CurrentReservation currentReservation) {
         Reservation reservation = new Reservation();
         User user = userRepo.findbyId(currentReservation.getUserId());
         reservation.setUserEmail(user.getEmail());
@@ -40,25 +37,14 @@ public class AdminService {
         reservationRepo.save(reservation);
     }
 
-    public void updateAdminReservation(CurrentReservation currentReservation) {
-        Reservation reservation = new Reservation();
-        reservation.setUserId(currentReservation.getUserId());
-        reservation.setUserEmail(currentReservation.getUserEmail());
-        reservation.setArrivalDate(currentReservation.getArrivalDate());
-        reservation.setDinner(currentReservation.getDinner());
-        reservation.setStayDays(currentReservation.getStayDays());
-        reservation.setChildren(currentReservation.getChildren());
-        reservation.setPersons(currentReservation.getPersons());
-        reservation.setPrice(currentReservation.getPrice());
-        reservation.setRooms(currentReservation.getRooms());
-        reservation.setRoomType(currentReservation.getRoomType());
-        reservation.setId(currentReservation.getId());
-        reservationRepo.save(reservation);
+    //hämtar reservations id från reservations repository
+    public Reservation getReservationById(int resId) {
+        return reservationRepo.findById(resId);
     }
 
-
-    public CurrentReservation adminCurrentReservationById(int resId) {
-        Reservation reservation = getReservationForLoggedUserById(resId);
+    //hämtar all sparad info för reservationen
+    public CurrentReservation getCurrentReservationById(int resId) {
+        Reservation reservation = getReservationById(resId);
         CurrentReservation currentReservation = new CurrentReservation();
         currentReservation.setArrivalDate(reservation.getArrivalDate());
         currentReservation.setDinner(reservation.getDinner());
@@ -74,8 +60,26 @@ public class AdminService {
         return currentReservation;
     }
 
-    public Reservation getReservationForLoggedUserById(int resId) {
-        return reservationRepo.findById(resId);
+    //ändra reservation
+    public void updateReservation(CurrentReservation currentReservation) {
+        Reservation reservation = new Reservation();
+        reservation.setUserId(currentReservation.getUserId());
+        reservation.setUserEmail(currentReservation.getUserEmail());
+        reservation.setArrivalDate(currentReservation.getArrivalDate());
+        reservation.setDinner(currentReservation.getDinner());
+        reservation.setStayDays(currentReservation.getStayDays());
+        reservation.setChildren(currentReservation.getChildren());
+        reservation.setPersons(currentReservation.getPersons());
+        reservation.setPrice(currentReservation.getPrice());
+        reservation.setRooms(currentReservation.getRooms());
+        reservation.setRoomType(currentReservation.getRoomType());
+        reservation.setId(currentReservation.getId());
+        reservationRepo.save(reservation);
+    }
+
+    //ta bort reservation
+    public void deleteReservation(int resId) {
+        reservationRepo.deleteById(resId);
     }
 
 }

@@ -19,44 +19,51 @@ public class UserPageController {
         this.userService = userService;
     }
 
+    //Main websidan
     @GetMapping("/main")
     public String showMainPage() {
         return "/user/user-main";
     }
 
+    //rums info websidan
     @GetMapping("/hotel-rooms")
     public String showRoomDetailPage() {
         return "/user/hotel-rooms";
     }
 
+    //Boknings websidan
     @GetMapping("/booking-rooms")
     public String newReservation(Model model) {
         model.addAttribute("newRes", new CurrentReservation());
         return "/user/booking-rooms";
     }
 
+    //genomföring av bokning
     @PostMapping("/proceed-reservation")
     public String proceedReservation(@Valid @ModelAttribute("newRes") CurrentReservation currentReservation) {
         userService.saveOrUpdateReservation(currentReservation);
         return "redirect:/user/your-reservations";
     }
 
+    //visar egna reservationer
     @GetMapping("/your-reservations")
     public String reservationsList(Model model) {
         model.addAttribute("resList", userService.getReservationsForLoggedUser());
         return "/user/user-reservation";
     }
 
-    @PostMapping("/reservation-delete")
-    public String deleteReservation(@RequestParam("resId") int resId) {
-        userService.deleteReservation(resId);
-        return "redirect:/user/your-reservations";
-    }
-
+    //ändrings knappen
     @PostMapping("/reservation-update")
     public String updateReservation(@RequestParam("resId") int resId, Model model) {
         model.addAttribute("newRes", userService.currentReservationById(resId));
         return "/user/booking-rooms";
+    }
+
+    //ta bort knappen
+    @PostMapping("/reservation-delete")
+    public String deleteReservation(@RequestParam("resId") int resId) {
+        userService.deleteReservation(resId);
+        return "redirect:/user/your-reservations";
     }
 
 }

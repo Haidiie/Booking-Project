@@ -9,30 +9,19 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
     private String roomType;
-
     private Integer price;
-
     private Integer rooms;
-
     private Integer persons;
-
     private Integer children;
-
     private String dinner;
-
     private LocalDate arrivalDate;
-
     private Integer stayDays;
-
     private Integer userId;
-
     private String userEmail;
 
 
-
-
+    // Getter och Setters
     public Integer getId() {
         return id;
     }
